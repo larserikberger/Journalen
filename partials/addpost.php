@@ -6,6 +6,7 @@ error_reporting(E_ALL);
 require 'config.php';
 require 'db.php';
 include 'header.php';
+require_once 'session_start.php'; 
 
 if(isset($_POST['submit'])){
     
@@ -17,17 +18,15 @@ if(isset($_POST['submit'])){
     $stmt = $pdo->prepare($sql);
     $stmt->execute(['title' => $title, 'userID' => $userID, 'content' => $content ]);
 
-    
     if(sql){
         header('Location: '.ROOT_URL.'');    
     } else {
         echo 'ERROR';
-    }
-       
+    }      
 }
 
-
 ?>
+
 <div class="container">
     <h1>Add Post</h1>
         <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">

@@ -4,7 +4,7 @@ include('partials/session_start.php');
 require('partials/config.php');
 require('partials/db.php');
 include('partials/header.php'); 
-include('partials/timesession.php');
+
 
 if (isset($_SESSION["loggedIn"])):
 include('partials/navbar.php');
@@ -46,6 +46,8 @@ if (!isset($_SESSION["loggedIn"])): ?>
 
 <?php
 
+include('partials/timesession.php');
+
 if (isset($_SESSION["loggedIn"])): 
 
 $stmt = $pdo->prepare('SELECT * FROM entries ORDER BY createdAt DESC');
@@ -55,7 +57,10 @@ $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <div class="container">
+    <br>
+    <form class="pull-right">
     <a href="partials/logout.php" class="btn btn-danger">Sign out</a>
+    </form>
     <br>
 </div>
     <div class="container">
@@ -63,17 +68,16 @@ $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php foreach($data as $entry) : ?>
         <div class="well">
             <h3>
-                <?php echo $entry['title']; ?> </h3>
+            <?php echo $entry['title']; ?> </h3>
             <small>Created on <?php echo $entry['createdAt']; ?> by 
-           <?php echo $entry['userID']; ?></small>
+            <?php echo $entry['userID']; ?></small>
             <p>
-                <?php echo $entry['content']; ?>
+            <?php echo $entry['content']; ?>
             </p>
-            <a class="btn btn-default" href="partials/post.php?entryID=<?php echo $entry['entryID']; ?>">Read More</a>
+            <a class="btn btn-default" href="partials/post.php?entryID=<?php echo $entry['entryID']; ?>">Read More</a>   
         </div>
-
+        <br>
         <?php endforeach; ?>
-
     </div>
 
     <?php include('partials/footer.php'); ?>
