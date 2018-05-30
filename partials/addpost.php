@@ -8,13 +8,18 @@ require 'db.php';
 include 'header.php';
 require_once 'session_start.php'; 
 
+//$_SESSION['username'] = $username['username'];
+//$_SESSION['userID'] = $user['userID'];
+
 if(isset($_POST['submit'])){
     
     $title = $_POST['title'];
-    $userID = $_POST['userID'];
+    $userID = $_SESSION['userID'];
+    $username = $_SESSION['username'];
     $content = $_POST['content'];
     
     $sql = 'INSERT INTO entries(title, userID, content) VALUES(:title, :userID, :content)';
+     
     $stmt = $pdo->prepare($sql);
     $stmt->execute(['title' => $title, 'userID' => $userID, 'content' => $content ]);
 
@@ -34,10 +39,7 @@ if(isset($_POST['submit'])){
                 <label>Title</label>
                 <input type="text" name="title" class="form-control">
             </div>
-            <div class="form-group">
-                <label>userID</label>
-                <input type="text" name="userID" class="form-control">
-            </div>
+          
             <div class="form-group">
                 <label>content</label>
                 <textarea name="content" class="form-control"></textarea>

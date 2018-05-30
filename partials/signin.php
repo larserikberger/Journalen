@@ -19,12 +19,11 @@ $statement->execute([
 $user = $statement->fetch();
 
 if (password_verify($_POST["password"], $user["password"])) {
-    //header('Location: /lars_berger_journal/index.php');
-    $_SESSION["loggedIn"] = true;
-    $_SESSION["username"] = $user["username"];
-    $_SESSION["userID"] = $user["userID"];
+    $_SESSION['loggedIn'] = true;
+    $_SESSION['username'] = $username['username'];
+    $_SESSION['userID'] = $user['userID'];
     $_SESSION['start'] = time();
-    $_SESSION['expire'] = $_SESSION['start'] + (2 * 60);
+    $_SESSION['expire'] = $_SESSION['start'] + (15 * 60);
 } else {
     header('Location: /index.php?message=login failed');
 }
