@@ -14,15 +14,13 @@ if(isset($_POST['delete'])){
     $sql = 'DELETE FROM entries WHERE entryID = :delete_entryID';
     $stmt = $pdo->prepare($sql);
     $stmt->execute([':delete_entryID' => $delete_entryID]);
-    
-    
+       
     if(sql){
         header('Location: '.ROOT_URL.'');    
     } else {
         echo 'ERROR';
     }       
 }
-
 
 $fetchOne = $pdo->prepare('SELECT * FROM entries WHERE entryID = :entryID');
 $fetchOne->execute([

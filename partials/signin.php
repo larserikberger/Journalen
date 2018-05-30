@@ -23,7 +23,7 @@ if (password_verify($_POST["password"], $user["password"])) {
     $_SESSION['username'] = $username['username'];
     $_SESSION['userID'] = $user['userID'];
     $_SESSION['start'] = time();
-    $_SESSION['expire'] = $_SESSION['start'] + (15 * 60);
+    $_SESSION['expire'] = $_SESSION['start'] + (1 * 60);
 } else {
     header('Location: /index.php?message=login failed');
 }

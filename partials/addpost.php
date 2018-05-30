@@ -8,9 +8,6 @@ require 'db.php';
 include 'header.php';
 require_once 'session_start.php'; 
 
-//$_SESSION['username'] = $username['username'];
-//$_SESSION['userID'] = $user['userID'];
-
 if(isset($_POST['submit'])){
     
     $title = $_POST['title'];
@@ -39,7 +36,6 @@ if(isset($_POST['submit'])){
                 <label>Title</label>
                 <input type="text" name="title" class="form-control">
             </div>
-          
             <div class="form-group">
                 <label>content</label>
                 <textarea name="content" class="form-control"></textarea>
